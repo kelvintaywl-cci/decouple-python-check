@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.9.0
+    resource_class: small
+    steps:
+      - checkout
+      - run: 
+          name: run Python script
+          command: |
+            pip install python-decouple
+
+            # should print BAR and 12345
+            python -c "from decouple import config; print(config('FOO')); print(config('PHONE_NUMBER'))"
+          environment:
+            PHONE_NUMBER: 12345
+  
