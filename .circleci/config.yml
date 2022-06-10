@@ -14,6 +14,5 @@ jobs:
 
             # should print BAR and 12345
             python -c "from decouple import config; print(config('FOO')); print(config('PHONE_NUMBER'))"
-          environment:
-            PHONE_NUMBER: 12345
+
   
