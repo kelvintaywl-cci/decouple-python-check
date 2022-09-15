@@ -24,7 +24,7 @@ jobs:
       - run: 
           name: Install cryptography via virtualenv
           command: |
-            python3 -m venv venv
+            python -m venv venv
             . venv/bin/activate
             python --version
             pip --version
