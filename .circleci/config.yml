@@ -1,14 +1,53 @@
 version: 2.1
 
-jobs:
-  build:
+executors:
+  python:
     docker:
       - image: circleci/python:3.8.2-buster
     resource_class: small
+
+jobs:
+  install-directly:
+    executor: python
     steps:
       - run: 
           name: Install cryptography
           command: |
+            python --version
+            pip --version
+
+            pip install cryptography>=2.3.0
+
+  install-via-virtualenv:
+    executor: python
+    steps:
+      - run: 
+          name: Install cryptography via virtualenv
+          command: |
             python3 -m venv venv
             . venv/bin/activate
+            python --version
+            pip --version
+            
             pip install cryptography>=2.3.0
+
+#   install-via-virtualenv-with-rust:
+#     executor: python
+#     steps:
+#       - install-rust
+#       - run: 
+#           name: Install cryptography via virtualenv
+#           command: |
+#             python3 -m venv venv
+#             . venv/bin/activate
+#             python --version
+#             pip --version
+            
+#             pip install cryptography>=2.3.0
+
+workflows:
+  main:
+    jobs:
+      - install-directly
+      - install-via-virtualenv
+#       - install-via-virtualenv-with-rust
