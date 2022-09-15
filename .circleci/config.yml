@@ -19,7 +19,7 @@ workflows:
       not: << pipeline.git.tag >>
     jobs:
       - build:
-          branch: << pipeline.git.branch >>
+          branch: <<#pipeline.git.branch>><<pipeline.git.branch>><</pipeline.git.branch>>
           # # ignore tags explicitly
           # filters:
           #   tags:
