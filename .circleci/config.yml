@@ -14,6 +14,13 @@ jobs:
 
 workflows:
   main:
+    # do not run when tag event
+    when:
+      not: << pipeline.git.tag >>
     jobs:
       - build:
           branch: << pipeline.git.branch >>
+          # # ignore tags explicitly
+          # filters:
+          #   tags:
+          #     ignore: /.*/
