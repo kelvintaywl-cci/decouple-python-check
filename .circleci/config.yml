@@ -3,16 +3,10 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/python:3.9.0
+      - image: circleci/python:3.8.2-buster
     resource_class: small
     steps:
-      - checkout
       - run: 
-          name: run Python script
+          name: Install cryptography
           command: |
-            pip install python-decouple
-
-            # should print BAR and 12345
-            python -c "from decouple import config; print(config('FOO')); print(config('PHONE_NUMBER'))"
-
-  
+            pip install cryptography>=2.3.0
