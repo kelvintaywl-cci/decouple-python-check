@@ -15,5 +15,5 @@ jobs:
 workflows:
   main:
     jobs:
-      build:
-        branch: << pipeline.git.branch >>
+      - build:
+          branch: << pipeline.git.branch >>
